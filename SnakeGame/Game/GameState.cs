@@ -31,13 +31,14 @@ namespace SnakeGame
         public int height { get; protected set; }
 
         /// <summary>
-        /// Creates the game
+        /// Creates the first step of the game
         /// </summary>
-        /// <param name="settings"> Game settings </param>
+        /// <param name="settings"> Game settings (map sizes, snake start position, ...) </param>
+        /// /// <exception cref="ArgumentException"/>
         public GameState(GameSettings settings) : this(settings.MapWidth, settings.MapHeight, settings.HeadStartX, settings.HeadStartY, settings.StartDirection, settings.ChangeSpeedLevelOn) { }
 
         /// <summary>
-        /// Creates the game
+        /// Creates the first step of the game
         /// </summary>
         /// <param name="mapWidth"> Map width </param>
         /// <param name="mapHeight"> Map height </param>
