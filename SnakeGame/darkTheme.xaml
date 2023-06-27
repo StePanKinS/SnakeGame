@@ -1,0 +1,22 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <SolidColorBrush x:Key="WindowBG">GhostWhite</SolidColorBrush>
+
+    
+    <SolidColorBrush x:Key="WindowButtonBG">GhostWhite</SolidColorBrush>
+    <SolidColorBrush x:Key="WindowButtonBGMouseOver">LightGray</SolidColorBrush>
+    <SolidColorBrush x:Key="WindowButtonBGMouseClick">Gray</SolidColorBrush>
+    <SolidColorBrush x:Key="WindowButtonCrossBGMouseOver">#ef0000</SolidColorBrush>
+    <SolidColorBrush x:Key="WindowButtonCrossBGMouseClick">#a60000</SolidColorBrush>
+    <SolidColorBrush x:Key="WindowButtonContent">DarkGray</SolidColorBrush>
+
+    
+    <SolidColorBrush x:Key="helloScreenButtonBg">Green</SolidColorBrush>
+    <SolidColorBrush x:Key="helloScreenButtnoBGMouseOver">LightGreen</SolidColorBrush>
+    <SolidColorBrush x:Key="helloScreenButtnoBGMouseClick">LawnGreen</SolidColorBrush>
+    <SolidColorBrush x:Key="helloScreenButtonBorder">#303030</SolidColorBrush>
+    <SolidColorBrush x:Key="helloScreenButtonBorderMouseOver">#303030</SolidColorBrush>
+    <SolidColorBrush x:Key="helloScreenButtonBorderMouseClick">#303030</SolidColorBrush>
+    <SolidColorBrush x:Key="helloScreenButtonForeground">Black</SolidColorBrush>
+    <ImageSource x:Key="helloScreenImage">snake.bmp</ImageSource>
+</ResourceDictionary>

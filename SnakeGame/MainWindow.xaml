@@ -1,0 +1,141 @@
+﻿<Window x:Class="SnakeGame.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SnakeGame"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="500" Width="600"
+        Name="window"
+        WindowStyle="None" AllowsTransparency="True"
+        >
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary x:Name="windowButtonsDict">
+
+                    <Style x:Key="WindowButtonParentStyle" TargetType="local:MyBtn" BasedOn="{StaticResource DefaultBtn}">
+                        <Setter Property="Width" Value="20"/>
+                        <Setter Property="Margin" Value="1 0 0 0"/>
+                        <Setter Property="HorizontalAlignment" Value="Right"/>
+                        <Setter Property="VerticalAlignment" Value="Top"/>
+                        <Setter Property="CornerRadius" Value="1"/>
+
+                        <Setter Property="Background" Value="{DynamicResource WindowButtonBG}"/>
+                        <Setter Property="BackgroundMouseOver" Value="{DynamicResource WindowButtonBGMouseOver}"/>
+                        <Setter Property="BackgroundMouseClick" Value="{DynamicResource WindowButtonBGMouseClick}"/>
+
+                        <Setter Property="Foreground" Value="Green"/>
+                    </Style>
+
+                    <Style x:Key="closeButton" TargetType="local:MyBtn" BasedOn="{StaticResource WindowButtonParentStyle}">
+                        <EventSetter Event="Click" Handler="closeButton_Click"/>
+                        <Setter Property="BackgroundMouseOver" Value="{DynamicResource WindowButtonCrossBGMouseOver}"/>
+                        <Setter Property="BackgroundMouseClick" Value="{DynamicResource WindowButtonCrossBGMouseClick}"/>
+                        <Setter Property="Content">
+                            <Setter.Value>
+                                <Grid>
+                                    <Line X1="0" Y1="0" X2="10" Y2="10" Stroke="{DynamicResource WindowButtonContent}" Margin="5"/>
+                                    <Line X1="0" Y1="10" X2="10" Y2="0" Stroke="{DynamicResource WindowButtonContent}" Margin="5"/>
+                                </Grid>
+                            </Setter.Value>
+                        </Setter>
+                    </Style>
+
+                    <Style x:Key="fullScreenButton" TargetType="local:MyBtn" BasedOn="{StaticResource WindowButtonParentStyle}">
+                        <EventSetter Event="Click" Handler="fullScreenButton_Click"/>
+                        <Setter Property="Content">
+                            <Setter.Value>
+                                <Grid>
+                                    <Line X1="0" Y1="0" X2="8" Y2="0" Stroke="{DynamicResource WindowButtonContent}" Margin="6 5 6 6"/>
+                                    <Line X1="8" Y1="8" X2="8" Y2="0" Stroke="{DynamicResource WindowButtonContent}" Margin="6 5 5 6"/>
+                                    <Line X1="0" Y1="8" X2="8" Y2="8" Stroke="{DynamicResource WindowButtonContent}" Margin="6 5 6 6"/>
+                                    <Line X1="0" Y1="8" X2="0" Y2="0" Stroke="{DynamicResource WindowButtonContent}" Margin="6 5 6 6"/>
+                                </Grid>
+                            </Setter.Value>
+                        </Setter>
+                    </Style>
+
+                    <Style x:Key="hideButton" TargetType="local:MyBtn" BasedOn="{StaticResource WindowButtonParentStyle}">
+                        <EventSetter Event="Click" Handler="hideButton_Click"/>
+                        <Setter Property="Content">
+                            <Setter.Value>
+                                <Line X1="0" Y1="0" X2="12" Y2="0" Stroke="{DynamicResource WindowButtonContent}" StrokeThickness="1.3" Margin="4 9 4 10"/>
+                            </Setter.Value>
+                        </Setter>
+                    </Style>
+                </ResourceDictionary>
+                <ResourceDictionary x:Name="helloScreenDict">
+                    <Style x:Key="helloScreenButton" TargetType="local:MyBtn" BasedOn="{StaticResource DefaultBtn}">
+                        <Setter Property="Height" Value="50"/>
+                        <Setter Property="Width" Value="200"/>
+                        <Setter Property="CornerRadius" Value="20"/>
+                        <Setter Property="Margin" Value="0 5 0 10"/>
+
+                        <Setter Property="BorderThickness" Value="2"/>
+                        <Setter Property="BorderBrush" Value="{DynamicResource helloScreenButtonBorder}"/>
+                        <Setter Property="BorderMouseOver" Value="{DynamicResource helloScreenButtonBorderMouseOver}"/>
+                        <Setter Property="BorderMouseClick" Value="{DynamicResource helloScreenButtonBorderMouseClick}"/>
+
+                        <Setter Property="Background" Value="{DynamicResource helloScreenButtonBg}"/>
+                        <Setter Property="BackgroundMouseOver" Value="{DynamicResource helloScreenButtnoBGMouseOver}"/>
+                        <Setter Property="BackgroundMouseClick" Value="{DynamicResource helloScreenButtnoBGMouseClick}"/>
+
+                        <Setter Property="Foreground" Value="{DynamicResource helloScreenButtonForeground}"/>
+                        <Setter Property="FontFamily" Value="arial"/>
+                        <Setter Property="FontSize" Value="20"/>
+                        <Setter Property="FontStyle" Value="Italic"/>
+                    </Style>
+                </ResourceDictionary>
+                <ResourceDictionary x:Name="TemplatesDict">
+                    <ControlTemplate x:Key="normalWindowTemplate" TargetType="Window">
+                        <Border Name="windowBorder" BorderBrush="Gray" BorderThickness="0.5">
+                            <Grid MouseLeftButtonDown="TopPanel_MouseDown" Background="Lavender">
+                                <Grid Name="mainGrid" Background="{DynamicResource WindowBG}">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Name="Caption" Height="22"/>
+                                        <RowDefinition/>
+                                    </Grid.RowDefinitions>
+
+
+                                    <DockPanel MouseDown="TopPanel_MouseDown">
+                                        <local:MyBtn DockPanel.Dock="Right" Style="{StaticResource closeButton}"/>
+                                        <local:MyBtn DockPanel.Dock="Right" Style="{StaticResource fullScreenButton}"/>
+                                        <local:MyBtn DockPanel.Dock="Right" Style="{StaticResource hideButton}"/>
+                                        <Image DockPanel.Dock="Left" Source="{TemplateBinding Icon}" MaxWidth="20"/>
+                                        <TextBlock DockPanel.Dock="Left" FontSize="10" Text="{TemplateBinding Title}" VerticalAlignment="Center" HorizontalAlignment="Left"/>
+                                    </DockPanel>
+
+                                    <Border Name="ContentBorder" Grid.Row="1">
+                                        <ContentPresenter/>
+                                    </Border>
+                                </Grid>
+                            </Grid>
+                        </Border>
+                    </ControlTemplate>
+
+                    <ControlTemplate x:Key="maximaizedWindowTemplate" TargetType="Window">
+                        <Border Background="{DynamicResource WindowBG}" Padding="6.666666666666666666666666666">
+                            <ContentPresenter/>
+                        </Border>
+                    </ControlTemplate>
+                </ResourceDictionary>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Window.Resources>
+
+    <Grid Name="screenGrid" Background="{DynamicResource WindowBG}">
+        <Grid Name="helloScreen">
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition Height="1.25*"/>
+            </Grid.RowDefinitions>
+
+            <Image Source="{DynamicResource helloScreenImage}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            <StackPanel Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center">
+                <local:MyBtn Style="{DynamicResource helloScreenButton}" Click="PlayButton_Click" Content="Играть"/>
+                <local:MyBtn Style="{DynamicResource helloScreenButton}" Click="SettingsButton_Click" Content="Настройки" Grid.Row="1"/>
+            </StackPanel>
+        </Grid>
+    </Grid>
+</Window>
