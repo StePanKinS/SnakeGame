@@ -62,7 +62,6 @@ namespace SnakeGame
             if (settingsList.Count == 0)
             {
                 settingsList.Add(Default);
-                settingsList.Add(new GameSettings(0, 0, 0, 0, 0, new int[0], new int[0], "bruh"));
             }
 
             for (int i = 0; i < settingsList.Count; i++)
